@@ -1,0 +1,11 @@
+--- a/modules/cudaoptflow/src/nvidiaOpticalFlow.cpp
++++ b/modules/cudaoptflow/src/nvidiaOpticalFlow.cpp
+@@ -12,7 +12,7 @@
+ 
+ #elif !defined HAVE_NVIDIA_OPTFLOW
+ 
+-CV_Error(cv::Error::HeaderIsNull, "Nvidia Optical Flow headers not found. Make sure cmake downloads it properly");
++// CV_Error(cv::Error::HeaderIsNull, "Nvidia Optical Flow headers not found. Make sure cmake downloads it properly");
+ 
+ #else
+ 

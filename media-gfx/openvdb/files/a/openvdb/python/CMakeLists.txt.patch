@@ -1,0 +1,10 @@
+--- a/openvdb/python/CMakeLists.txt
++++ b/openvdb/python/CMakeLists.txt
+@@ -223,7 +223,6 @@
+   pyFloatGrid.cc
+   pyIntGrid.cc
+   pyMetadata.cc
+-  pyPointGrid.cc
+   pyOpenVDBModule.cc
+   pyPointGrid.cc
+   pyTransform.cc

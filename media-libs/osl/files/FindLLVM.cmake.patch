@@ -1,0 +1,46 @@
+--- a/src/cmake/modules/FindLLVM.cmake
++++ b/src/cmake/modules/FindLLVM.cmake
+@@ -57,6 +57,8 @@
+                  OUTPUT_STRIP_TRAILING_WHITESPACE)
+ string (REPLACE " " ";" LLVM_SYSTEM_LIBRARIES "${LLVM_SYSTEM_LIBRARIES}")
+ 
++message (STATUS "Found llvm system library '${LLVM_SYSTEM_LIBRARY}'")
++
+ find_library ( LLVM_LIBRARY
+                NAMES LLVM-${LLVM_VERSION} LLVM
+                PATHS ${LLVM_LIB_DIR})
+@@ -75,23 +77,23 @@
+     endif ()
+ endforeach ()
+ 
++if (NOT LLVM_LIBRARY)
++    execute_process (COMMAND ${LLVM_CONFIG} --libraries
++                     OUTPUT_VARIABLE LLVM_LIBRARY
++                     OUTPUT_STRIP_TRAILING_WHITESPACE)
++    string (REPLACE " " ";" LLVM_LIBRARY "${LLVM_LIBRARY}")
++endif ()
++
++message (STATUS "Found llvm library '${LLVM_LIBRARY}'")
+ 
+-# shared llvm library may not be available, this is not an error if we use LLVM_STATIC.
+-if ((LLVM_LIBRARY OR LLVM_LIBRARIES OR LLVM_STATIC) AND LLVM_INCLUDES AND LLVM_DIRECTORY AND LLVM_LIB_DIR)
+-  if (LLVM_STATIC)
+-    # if static LLVM libraries were requested, use llvm-config to generate
+-    # the list of what libraries we need, and substitute that in the right
+-    # way for LLVM_LIBRARY.
+-    execute_process (COMMAND ${LLVM_CONFIG} --libfiles
++if (NOT LLVM_LIBRARIES)
++    execute_process (COMMAND ${LLVM_CONFIG} --libs
+                      OUTPUT_VARIABLE LLVM_LIBRARIES
+                      OUTPUT_STRIP_TRAILING_WHITESPACE)
+     string (REPLACE " " ";" LLVM_LIBRARIES "${LLVM_LIBRARIES}")
+-    set (LLVM_LIBRARY "")
+-  else ()
+-    set (LLVM_LIBRARIES "${LLVM_LIBRARY}")
+-  endif ()
+ endif ()
+ 
++message (STATUS "Found llvm libraries '${LLVM_LIBRARIES}'")
+ 
+ include(FindPackageHandleStandardArgs)
+ find_package_handle_standard_args (LLVM

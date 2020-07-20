@@ -5,7 +5,7 @@
      case $prev$p in
  
 -    -L* | -R* | -l*)
-+    -L* | -R* | -l* | */libclang_rt.*.a)
++    -L* | -R* | -l* | *clang_rt*.a)
         # Some compilers place space between "-{L,R}" and the path.
         # Remove the space.
         if test x-L = "$p" ||

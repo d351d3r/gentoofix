@@ -1,0 +1,10 @@
+--- a/cmake/OpenCVDetectCUDA.cmake
++++ b/cmake/OpenCVDetectCUDA.cmake
+@@ -47,6 +47,7 @@
+     endif()
+     if(CUDA_nvcuvenc_LIBRARY)
+       set(HAVE_NVCUVENC 1)
++      include_directories(/usr/include/nvidia-sdk)
+     endif()
+   endif()
+ 

@@ -1,0 +1,18 @@
+--- a/src/shaders/CMakeLists.txt
++++ b/src/shaders/CMakeLists.txt
+@@ -63,4 +63,4 @@ add_custom_target (shaders ALL
+                    SOURCES ${shader_source} ${shader_headers})
+ 
+ install (FILES ${shader_headers} ${shader_source} ${shader_objs}
+-        DESTINATION shaders)
++        DESTINATION include/OSL/shaders)
+--- a/src/shaders/MaterialX/CMakeLists.txt
++++ b/src/shaders/MaterialX/CMakeLists.txt
+@@ -258,5 +258,5 @@ add_custom_target (mxshaders ALL
+                    SOURCES ${shader_source} ${mx_shader_headers})
+ 
+ install (FILES ${mx_shader_headers} ${mx_shader_objs} ${mx_shader_osls}
+-         DESTINATION shaders/MaterialX)
++         DESTINATION include/OSL/shaders/MaterialX)
+ 
+
