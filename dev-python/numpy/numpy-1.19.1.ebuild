@@ -1,6 +1,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_REQ_USE="threads(+)"
 
 FORTRAN_NEEDED=lapack
 
@@ -8,7 +9,7 @@ DISTUTILS_USE_SETUPTOOLS=rdepend
 
 inherit distutils-r1 flag-o-matic fortran-2 multiprocessing toolchain-funcs
 
-DOC_PV="1.18.4"
+DOC_PV="1.19.0"
 DESCRIPTION="Fast array and numerical python library"
 HOMEPAGE="https://www.numpy.org"
 SRC_URI="
@@ -20,7 +21,7 @@ SRC_URI="
 	)"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64"
 IUSE="doc lapack"
 
 RDEPEND="
@@ -32,7 +33,7 @@ RDEPEND="
 BDEPEND="
 	${RDEPEND}
 	app-arch/unzip
-	>=dev-python/cython-0.29.15[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
 	lapack? ( virtual/pkgconfig )
 	test? (
 		>=dev-python/hypothesis-5.8.0[${PYTHON_USEDEP}]
@@ -75,7 +76,7 @@ python_prepare_all() {
 
 	append-flags -fno-strict-aliasing
 
-	# See progress in https://projects.scipy.org/scipy/numpy/ticket/573
+	# See progress in http://projects.scipy.org/scipy/numpy/ticket/573
 	# with the subtle difference that we don't want to break Darwin where
 	# -shared is not a valid linker argument
 	if [[ ${CHOST} != *-darwin* ]]; then

@@ -1,0 +1,12 @@
+--- a/google/cloud/storage/CMakeLists.txt
++++ b/google/cloud/storage/CMakeLists.txt
+@@ -231,9 +231,6 @@
+            Crc32c::crc32c
+            CURL::libcurl
+            Threads::Threads
+-           OpenSSL::SSL
+-           OpenSSL::Crypto
+-           ZLIB::ZLIB
+     PRIVATE storage_common_options)
+ target_include_directories(
+     storage_client
