@@ -18,10 +18,6 @@ DOCS=( ChangeLog.md README.md )
 
 S=${WORKDIR}/json-${PV}
 
-#PATCHES=(
-#	"${FILESDIR}"/${PN}-3.9.1-gcc-10.patch
-#)
-
 src_configure() {
 	local mycmakeargs=(
 		-DJSON_BuildTests=$(usex test)
