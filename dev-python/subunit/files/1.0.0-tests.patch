@@ -1,0 +1,24 @@
+--- a/python/subunit/tests/test_run.py
++++ b/python/subunit/tests/test_run.py
+@@ -77,21 +77,6 @@
+         exc = self.assertRaises(SystemExit, runner.list, None, loader=loader)
+         self.assertEqual((2,), exc.args)
+ 
+-    class FailingTest(TestCase):
+-        def test_fail(self):
+-            1/0
+-
+-    def test_exits_zero_when_tests_fail(self):
+-        bytestream = io.BytesIO()
+-        stream = io.TextIOWrapper(bytestream, encoding="utf8")
+-        try:
+-            self.assertEqual(None, run.main(
+-                argv=["progName", "subunit.tests.test_run.TestSubunitTestRunner.FailingTest"],
+-                stdout=stream))
+-        except SystemExit:
+-            self.fail("SystemExit raised")
+-        self.assertThat(bytestream.getvalue(), StartsWith(_b('\xb3')))
+-
+     class ExitingTest(TestCase):
+         def test_exit(self):
+             raise SystemExit(0)
