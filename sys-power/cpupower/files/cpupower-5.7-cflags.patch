@@ -1,0 +1,19 @@
+--- a/tools/power/cpupower/Makefile
++++ b/tools/power/cpupower/Makefile
+@@ -178,14 +178,7 @@ else
+ endif
+ export QUIET ECHO
+ 
+-# if DEBUG is enabled, then we do not strip or optimize
+-ifeq ($(strip $(DEBUG)),true)
+-	override CFLAGS += -O1 -g -DDEBUG
+-	STRIPCMD = /bin/true -Since_we_are_debugging
+-else
+-	override CFLAGS += $(OPTIMIZATION) -fomit-frame-pointer
+-	STRIPCMD = $(STRIP) -s --remove-section=.note --remove-section=.comment
+-endif
++STRIPCMD = true
+ 
+ 
+ # the actual make rules
+
